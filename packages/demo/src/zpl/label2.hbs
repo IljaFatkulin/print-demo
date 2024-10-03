@@ -1,0 +1,43 @@
+^XA
+
+{{! Label width (575 / 8 = 72mm) }}
+^PW575
+
+{{! Label height (406 / 8 = 50mm) }}
+^LL406
+
+{{! Label home (shifted 65 / 8 = 8mm down) }}
+^LH0,64
+
+{{! QR code }}
+^FT441,188^BQN,2,3^FH\^FDLA,{{qrCode}}^FS
+
+{{! Barcode }}
+^BY3,3,50^FT250,243^BCN,,N,N^FH\^FD>;{{barcode}}^FS
+
+{{! Barcode left side text }}
+^FT252,266^APN,20,6^FH\^FD{{barcode}}^FS
+
+{{! Barcode right side text }}
+^FT355,267^FB200,1,0,R^APN,20,6^FH\^FD{{sku}}^FS
+
+{{! Title (2 lines allowed) }}
+^FPH,1^FT19,50^AQN,28,9^FB500,2,6,C^FH\^FD{{{title}}}\5C&^FS
+
+{{! Price }}
+^FPH,2^FT19,132^AVN,80,25^FH\^CI28^FD£{{price}}^FS
+
+{{! Price per KG }}
+{{#if pricePerKg}}
+  ^FPH,1^FT279,117^A0N,18,18^FH\^CI28^FD£{{pricePerKg}}
+  per kg^FS^CI27
+{{/if}}
+
+{{! Description }}
+^FT19,300^APN,20,6^FB300,6,4^FD{{{splitNewLines description}}}^FS
+
+{{! Date }}
+^FPH,1^FT19,167^APN,20,6^FH\^FD{{formatDate date}}^FS
+
+{{! R in square box }}
+^FO129,191^GB56,56,8^FS ^FPH,1^FT146,230^GSN,24,24^FH\^FDA^FS ^XZ
