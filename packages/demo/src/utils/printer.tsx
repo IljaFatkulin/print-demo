@@ -72,26 +72,7 @@ export function usePrinterDiscovery() {
     }
   }, []);
 
-  const factoryReset = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      await ZebraPrinter.factoryReset();
-      setPrinters([]);
-      await Preferences.remove({ key: "selected_printer" });
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError(String(error));
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  return { printers, isLoading, error, startDiscovery, factoryReset };
+  return { printers, isLoading, error, startDiscovery };
 }
 
 export function useSelectPrinter(printer: ZebraBluetoothPrinter) {

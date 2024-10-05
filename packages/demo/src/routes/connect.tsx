@@ -8,15 +8,10 @@ import {
 import { SearchPrinters } from "../components/search-printers";
 import { usePrinterDiscovery, useSelectedPrinter } from "../utils/printer";
 import { Button } from "../components/button";
-import { useCallback } from "react";
 
 export default function Connect() {
   const printer = useSelectedPrinter();
-  const { factoryReset, error } = usePrinterDiscovery();
-
-  const handleFactoryReset = useCallback(() => {
-    factoryReset();
-  }, [factoryReset]);
+  const { error } = usePrinterDiscovery();
 
   return (
     <div>
@@ -35,9 +30,6 @@ export default function Connect() {
           <SearchPrinters />
         </DialogContent>
       </Dialog>
-      <Button variant="outline_red" onClick={handleFactoryReset}>
-        Factory reset
-      </Button>
     </div>
   );
 }
